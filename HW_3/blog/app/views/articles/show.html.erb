@@ -1,0 +1,40 @@
+  <%= link_to '|Все статьи|', articles_path %>
+<h1> <%= @article.title %> </h1>
+
+<p> <%= @article.content %> </p>
+
+<h2>Комментари</h2>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Пользователь:</strong>
+    <%= comment.author %>
+  </p>
+
+  <p>
+    <strong>Комментарий:</strong>
+    <%= comment.body %>
+  </p>
+
+  <!-- <p>
+    <%= link_to 'Удалить', [comment.article, comment],
+                 method: :delete,
+                 data: { confirm: 'Вы уверенны?' } %>
+  </p> -->
+<% end %>
+
+<h2>Добавьте комментарий:</h2>
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |f| %>
+  <p>
+    <%= f.label "Имя" %><br>
+    <%= f.text_field :author %>
+  </p>
+  <p>
+    <%= f.label "Текст" %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить'%>
+
+  </p>
+
+<% end %>
