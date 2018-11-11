@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-
+before_action :authenticate_user!, except: [:index, :show]
 
     def new
       @category = Category.new(params[:id])

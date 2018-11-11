@@ -8,11 +8,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <% if user_signed_in? %>
+  <%= link_to "Выход", destroy_user_session_path, method: :delete %>
+  <% else %>
+  <%= link_to "Вход", new_user_session_path%>
+  |<%= link_to "Регистрация", new_user_registration_path%>
+<% end %>
   <body>
 
-    <%= link_to 'Главная', stores_path %>
+    |<%= link_to 'Главная', stores_path %>
 
     <%= yield %>
+    <p><%= "тестовый логин - t1@t1.ck" %></p>
+    <p><%= "тестовый пароль - 123456789"%></p>
   </body>
 </html>
