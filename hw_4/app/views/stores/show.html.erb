@@ -1,0 +1,49 @@
+<%= link_to 'Back', 'javascript:history.back()' %>
+<h1><%= @store.name %><h1> <h3>(<%= @store.image %>)</h3>
+
+
+
+
+
+  <% @store.categories.each do |category| %>
+
+    <b>
+      <h2>Categorise = <%= link_to category.name, store_category_path(@store, category) %></h2>
+    </b>
+
+    <p>
+      <h2>Image = (<%= category.image %>)</h2>
+    </p>
+    <% if category.avatar.url %>
+    <%= image_tag category.avatar.url(:thumb) %>
+    <% else %>
+
+    <% end %>
+
+<p>--------------------------------------------------</p>
+<% end %>
+
+
+
+<h2>New Categories:</h2>
+<%= form_with(model: [ @store, @store.categories.build ], local: true, html: {multipart: true}) do |f| %>
+  <p>
+    <%= f.label "Name(Category)" %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "Image(Category)" %><br>
+    <%= f.text_area :image %>
+  </p>
+
+  <div class="form-group">
+    <%= f.file_field :avatar %>
+  </div>
+
+
+  <p>
+    <%= f.submit 'Save'%>
+
+  </p>
+
+<% end %>

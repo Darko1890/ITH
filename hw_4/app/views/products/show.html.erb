@@ -1,0 +1,50 @@
+<%= link_to 'Back', 'javascript:history.back()' %>
+<h1><%= @product.name %><h1>
+
+<h2><%= @product.image %><h2>
+
+
+    <% @product.suppliers.each do |supplier| %>
+    <h2>Suppliers</h2>
+
+      <b>
+        <h1><%= link_to supplier.name, store_category_product_supplier_path(@store, @category, @product, supplier) %></h1>
+      </b>
+
+      <p>
+        <%= supplier.image %>
+      </p>
+
+      <% if supplier.avatar.url %>
+      <%= image_tag supplier.avatar.url(:thumb) %>
+      <% else %>
+
+      <% end %>
+
+
+      <p>--------------------------------------------------</p>
+  <% end %>
+
+
+
+  <h2>New Supplier:</h2>
+  <%= form_with(model: [@store, @category, @product, @product.suppliers.build ], local: true, html: {multipart: true}) do |f| %>
+    <p>
+      <%= f.label "Name(Product)" %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label "Image(Product)" %><br>
+      <%= f.text_area :image %>
+    </p>
+    <div class="form-group">
+      <%= f.file_field :avatar %>
+    </div>
+
+
+    <p>
+      <%= f.submit 'Save'%>
+
+    </p>
+
+  <% end %>

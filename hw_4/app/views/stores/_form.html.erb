@@ -1,0 +1,21 @@
+<%= form_for @store, html: {multipart: true} do |f| %>
+
+<div class="form-control">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="form-control">
+  <%= f.label :image %>
+  <%= f.text_area :image %>
+</div>
+
+<div class="form-group">
+  <%= f.file_field :avatar %>
+</div>
+
+<div class="form-control">
+  <%= f.submit 'Сохранить' %>
+</div>
+
+<% end %>

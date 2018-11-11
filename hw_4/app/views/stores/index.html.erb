@@ -1,0 +1,18 @@
+    |  <b><%= link_to '+', new_store_path %></b>
+<% @stores.each do |store| %>
+
+<h1>  <%= link_to store.name, store_path(store) %></h1>
+<b> ( <%= store.image %></b> )
+
+<p>   <%= link_to 'Изменить', edit_store_path(store) %>
+<%= link_to 'Удалить', store_path(store), method: :delete, data: { confirm: 'Y/N?' } %></p>
+
+<% if store.avatar.url %>
+<%= image_tag store.avatar.url(:thumb) %>
+<% else %>
+
+<% end %>
+
+
+<p>__________________________________________________________</p>
+ <% end %>
