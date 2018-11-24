@@ -1,0 +1,44 @@
+<b><%= link_to "На главную", admin_countries_path%></b> | <%= link_to 'Назад', 'javascript:history.back()' %>
+
+<h1> Country = <%=  @country.name %></h1>
+(<%= @country.image %>)
+
+<p><%= image_tag @country.avatar.url(:thumb) %></p>
+
+
+  <% @country.cities.each do |city| %>
+<p>___________________________________________________</p>
+    <b>
+      <h3>City = <%= link_to city.name, admin_country_city_path(@country, city) %></h3>
+    </b>
+
+    <p>
+      <p>(<%= city.image %>)</p>
+    </p>
+    <p><%= link_to (image_tag city.avatar.url(:medium)), admin_country_city_path(@country, city) %></p>
+
+
+<% end %>
+
+
+<p>--------------------------------------------------</p>
+<h3>New City:</h3>
+<%= form_with(model: [ :admin, @country, @country.cities.build ], local: true) do |f| %>
+  <p>
+    <%= f.label "Name(City)" %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "Image(City)" %><br>
+    <%= f.text_area :image %>
+  </p>
+  <p>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </p>
+  <p>
+    <%= f.submit 'Save'%>
+
+  </p>
+
+<% end %>

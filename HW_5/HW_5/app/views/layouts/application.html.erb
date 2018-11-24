@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HW5</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+<% if current_user %>
+  Здравствуй: <%= current_user.name %> | <%= link_to "Выход", session_path(session), method: :delete  %> |
+<% else %>
+  <%= link_to 'Вход', new_session_path %> | <%= link_to 'Регистрация', new_user_path %>
+<% end %>
+  <body>
+    <%= yield %>
+  </body>
+</html>

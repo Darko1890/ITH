@@ -1,0 +1,13 @@
+<p><b><%= link_to 'Добавить страну', new_admin_country_path %></b></p>
+
+<% @countries.each do | country | %>
+
+<h1><%= link_to country.name, admin_country_path(country) %></h1>
+<%= country.image %>
+
+<p><%= image_tag country.avatar.url(:medium) %></p>
+<p><%= link_to 'Изменить', edit_admin_country_path(country) %> |
+  <%= link_to 'Удалить', admin_country_path(country), method: :delete, data: { confirm: 'Y/N?' } %></p>
+
+
+  <% end %>

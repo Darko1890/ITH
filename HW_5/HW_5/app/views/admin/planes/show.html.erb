@@ -1,0 +1,41 @@
+<b><%= link_to "На главную", admin_countries_path%></b> | <%= link_to 'Назад', 'javascript:history.back()' %>
+<h1>Plane = <%= @plane.name %></h1>
+(<%= @plane.image %>)
+<p><%= image_tag @plane.avatar.url(:thumb) %></p>
+
+<% @plane.passengers.each do |passenger| %>
+<p>___________________________________________________</p>
+  <b>
+    <h3>Passenger = <%= link_to passenger.name, admin_country_city_plane_passenger_path(@country, @city, @plane, passenger) %></h3>
+  </b>
+
+  <p>
+    <p>(<%= passenger.image %>)</p>
+  </p>
+  <p><%= image_tag passenger.avatar.url(:medium) %></p>
+
+
+<% end %>
+
+
+<p>--------------------------------------------------</p>
+<h3>New Passenger:</h3>
+<%= form_with(model: [:admin, @country, @city, @plane, @plane.passengers.build ], local: true) do |f| %>
+<p>
+  <%= f.label "Name(Passenger)" %><br>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label "Image(Passenger)" %><br>
+  <%= f.text_area :image %>
+</p>
+<p>
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
+</p>
+<p>
+  <%= f.submit 'Save'%>
+
+</p>
+
+<% end %>

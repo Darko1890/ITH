@@ -1,0 +1,5 @@
+<b><%= link_to "На главную", admin_countries_path%></b> | <%= link_to 'Назад', 'javascript:history.back()' %>
+
+<h1>Ticket = <%= @ticket.name %></h1>
+(<%= @ticket.image %>)
+<p><%= image_tag @ticket.avatar.url(:thumb) %></p>

@@ -1,0 +1,11 @@
+<h1>Регистрация</h1>
+
+<%= form_for :user, url: '/users' do |f| %>
+
+<p>Name: <%= f.text_field :name %>
+Email: <%= f.text_field :email %></p>
+<p>Password: <%= f.password_field :password %>
+  Password Confirmation: <%= f.password_field :password_confirmation %>
+  <p><%= f.submit "Регистрироватся" %></p></p>
+
+<% end %>
