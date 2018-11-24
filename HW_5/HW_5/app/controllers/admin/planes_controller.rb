@@ -14,7 +14,10 @@ class Admin::PlanesController < Admin::BaseController
   def show
     @country = Country.find(params[:country_id])
     @city = City.find(params[:city_id])
-    @plane = Plane.find(params[:id])
+
+    # @plane = Plane.find(params[:id])
+    @plane = Country.find(params[:country_id]).cities.find(params[:city_id]).planes.find(params[:id])
+
   end
 
   private

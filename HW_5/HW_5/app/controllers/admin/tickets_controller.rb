@@ -22,7 +22,9 @@ class Admin::TicketsController < Admin::BaseController
     @passenger = Passenger.find(params[:passenger_id])
 
 
-    @ticket = Ticket.find(params[:id])
+    # @ticket = Ticket.find(params[:id])
+    @ticket = Country.find(params[:country_id]).cities.find(params[:city_id]).planes.find(params[:plane_id]).passengers.find(params[:passenger_id]).tickets.find(params[:id])
+
   end
 
   private

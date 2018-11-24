@@ -12,7 +12,10 @@ class Admin::CitiesController < Admin::BaseController
 
   def show
     @country = Country.find(params[:country_id])
-    @city = City.find(params[:id])
+
+    # @city = City.find(params[:id])
+    @city = Country.find(params[:country_id]).cities.find(params[:id])
+
   end
 
   private

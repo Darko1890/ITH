@@ -19,7 +19,9 @@ class Admin::PassengersController < Admin::BaseController
     @city = City.find(params[:city_id])
     @plane = Plane.find(params[:plane_id])
 
-    @passenger = Passenger.find(params[:id])
+    # @passenger = Passenger.find(params[:id])
+    @passenger = Country.find(params[:country_id]).cities.find(params[:city_id]).planes.find(params[:plane_id]).passengers.find(params[:id])
+
   end
 
   private
